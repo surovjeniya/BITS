@@ -1,4 +1,6 @@
+import "./AuthForm.scss";
 import { useState, useEffect } from "react";
+import { TextField, Button, Alert } from "@mui/material/";
 
 export const AuthForm = () => {
   const [form, setForm] = useState({
@@ -26,9 +28,20 @@ export const AuthForm = () => {
 
   return (
     <div className="auth">
-      <form action="" className="auth-form">
-        <input type="text" />
+      <h4 className="auth__title">Войти</h4>
+      <form action="" className="auth__form">
+        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
       </form>
+      <div className="auth__btns">
+        <Button variant="outlined" disabled={step === 1}>
+          Назад
+        </Button>
+        {step === 2 && <Button variant="outlined">Вперёд</Button>}
+      </div>
+      <div>
+        <Alert severity="error">This is an error alert — check it out!</Alert>
+      </div>
     </div>
   );
 };
