@@ -15,22 +15,22 @@ class AuthService {
           activationCode: code,
         });
         await user.save();
-        const userData = userDto.getUser(user);
-        const tokens = tokenService.generateTokens(userData);
-        await tokenService.saveRefreshToken(tokens.refreshToken, userData.id);
+        //const userData = userDto.getUser(user);
+        //const tokens = tokenService.generateTokens(userData);
+        //await tokenService.saveRefreshToken(tokens.refreshToken, userData.id);
         return {
-          tokens,
-          userData,
+          //tokens,
+          //userData,
           code: user.activationCode,
         };
       } else {
         candidate.activationCode = codeService.generateCode();
         await candidate.save();
         const userData = userDto.getUser(candidate);
-        const tokens = tokenService.generateTokens(userData);
-        await tokenService.saveRefreshToken(tokens.refreshToken, userData.id);
+        //const tokens = tokenService.generateTokens(userData);
+        //await tokenService.saveRefreshToken(tokens.refreshToken, userData.id);
         return {
-          tokens,
+          //tokens,
           userData,
           code: candidate.activationCode,
         };

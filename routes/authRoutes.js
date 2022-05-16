@@ -25,7 +25,6 @@ router.post(
 );
 router.post(
   "/step2",
-  authLimit,
   check("code", "Невалидный код").isLength({ min: 6, max: 6 }).isNumeric(),
   authController.registrationStepTwo
 );

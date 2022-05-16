@@ -13,17 +13,9 @@ class AuthController {
         });
       }
       const stepOne = await authService.registrationStepOne(phone);
-      res.cookie("refreshToken", stepOne.tokens.refreshToken, {
-        maxAge: 60 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
+      res.json({
+        code: stepOne.code,
       });
-      //выслать код stepOne.code
-      // const resSMS = await smsService.sendActivationCode(
-      //   stepOne.userData.phone,
-      //   stepOne.code
-      // );
-
-      res.json(stepOne);
     } catch (e) {
       return res.status(400).json({
         message: e.message,
@@ -41,6 +33,10 @@ class AuthController {
         });
       }
       const stepTwo = await authService.registrationStepTwo(code);
+      res.cookie("refreshToken", stepTwo.tokens.refreshToken, {
+        maxAge: 60 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+      });
       res.json(stepTwo);
     } catch (e) {
       return res.status(400).json({
